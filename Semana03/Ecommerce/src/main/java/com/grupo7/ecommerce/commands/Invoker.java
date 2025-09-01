@@ -10,7 +10,7 @@ public class Invoker {
     }
     public void ejecutarComandos() {
         for (Command comando : comandos) {
-            comando.ejecutar();
+            comando.Ejecutar();
         }
         comandos.clear();
     }

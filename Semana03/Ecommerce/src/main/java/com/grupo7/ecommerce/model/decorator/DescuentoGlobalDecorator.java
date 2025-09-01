@@ -1,7 +1,6 @@
 package com.grupo7.ecommerce.model.decorator;
 
 import com.grupo7.ecommerce.model.Component;
-import com.grupo7.ecommerce.util.CurrencyUtils;
 
 public class DescuentoGlobalDecorator extends Decorator {
     private final double porcentaje;

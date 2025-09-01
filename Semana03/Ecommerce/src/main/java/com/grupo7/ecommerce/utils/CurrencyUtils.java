@@ -1,4 +1,4 @@
-package com.grupo7.ecommerce.util;
+package com.grupo7.ecommerce.utils;
 
 import java.text.NumberFormat;
 import java.util.Locale;

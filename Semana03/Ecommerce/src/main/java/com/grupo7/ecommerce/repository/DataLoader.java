@@ -4,6 +4,7 @@ import com.grupo7.ecommerce.controller.CarritoController;
 import com.grupo7.ecommerce.controller.DescuentoController;
 import com.grupo7.ecommerce.controller.ProductoController;
 import com.grupo7.ecommerce.model.Component;
+import com.grupo7.ecommerce.model.DiscountManager;
 import com.grupo7.ecommerce.model.dto.Boleta;
 import com.grupo7.ecommerce.model.dto.LineaBoleta;
 import com.grupo7.ecommerce.utils.CsvUtils;
@@ -61,17 +62,6 @@ public class DataLoader {
             if (ref != null) {
                 carritoController.agregarProducto(ref);
             }
-        }
-    }
-
-    public void cargarCuponesDesdeCSV(String ruta) {
-        List<String[]> filas = CsvUtils.readCsv(ruta);
-        boolean first = true;
-        for (String[] fila : filas) {
-            if (first) { first = false; continue; }
-            if (fila.length < 1) continue;
-            String cupon = fila[0];
-            if (cupon != null && !cupon.isBlank()) { descuentoController.setCuponValido(cupon); break; }
         }
     }
 

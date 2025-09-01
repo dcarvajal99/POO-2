@@ -128,6 +128,10 @@ public class ConsoleUI {
             System.out.println("El carrito está vacío. No hay boleta para emitir.");
             return;
         }
+        // Mostrar cupones y descuentos antes de pedir cupón
+        System.out.println("\n-- Descuentos y cupones disponibles --");
+        descuentoView.mostrarDescuentosDisponibles();
+        descuentoView.mostrarCuponesDisponibles();
         System.out.print("Ingrese cupón a aplicar para esta boleta (ENTER para ninguno): ");
         cuponActual = emptyToNull(sc.nextLine());
         Boleta boleta = carritoController.generarBoleta(cuponActual);
@@ -154,46 +158,11 @@ public class ConsoleUI {
     }
 
     private void menuDescuentos(Scanner sc) {
-        boolean back = false;
-        while (!back) {
-            System.out.println("\n-- Descuentos --");
-            System.out.println("1) Ver configuración");
-            System.out.println("2) Cambiar descuento global (%)");
-            System.out.println("3) Cambiar cupón válido");
-            System.out.println("4) Cambiar categoría en promoción");
-            System.out.println("5) Cambiar cupón a aplicar en boleta actual");
-            System.out.println("0) Volver");
-            System.out.print("Opción: ");
-            int op = parseIntSafe(sc.nextLine(), -1);
-            switch (op) {
-                case 1 -> descuentoView.mostrarConfiguracion();
-                case 2 -> {
-                    System.out.print("Ingrese porcentaje (0-100): ");
-                    double p = parseDoubleSafe(sc.nextLine(), 0);
-                    p = Math.max(0, Math.min(100, p));
-                    descuentoController.ejecutar(new SetDescuentoGlobalCommand(p / 100.0));
-                    descuentoView.mostrarConfiguracion();
-                }
-                case 3 -> {
-                    System.out.print("Ingrese cupón válido (vacío para ninguno): ");
-                    String c = emptyToNull(sc.nextLine());
-                    descuentoController.ejecutar(new SetCuponValidoCommand(c));
-                    descuentoView.mostrarConfiguracion();
-                }
-                case 4 -> {
-                    System.out.print("Ingrese categoría en promoción (vacío para ninguna): ");
-                    String cat = emptyToNull(sc.nextLine());
-                    descuentoController.ejecutar(new SetCategoriaPromocionCommand(cat));
-                    descuentoView.mostrarConfiguracion();
-                }
-                case 5 -> {
-                    System.out.print("Ingrese cupón a aplicar en boleta (vacío para ninguno): ");
-                    cuponActual = emptyToNull(sc.nextLine());
-                }
-                case 0 -> back = true;
-                default -> System.out.println("Opción inválida.");
-            }
-        }
+        System.out.println("\n-- Descuentos y cupones disponibles --");
+        descuentoView.mostrarDescuentosDisponibles();
+        descuentoView.mostrarCuponesDisponibles();
+        System.out.println("Presione ENTER para volver al menú principal.");
+        sc.nextLine();
     }
 
     private void verHistoricoBoletas() {

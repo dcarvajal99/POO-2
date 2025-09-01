@@ -22,7 +22,6 @@ public class App {
         String base = "src/main/java/com/grupo7/ecommerce/data";
         loader.cargarCatalogoDesdeCSV(base + "/productos.csv");
         loader.cargarDescuentosDesdeCSV(base + "/descuentos.csv");
-        loader.cargarCuponesDesdeCSV(base + "/cupones.csv");
         loader.cargarCarritoDesdeCSV(base + "/carrito.csv");
 
         // Vistas
